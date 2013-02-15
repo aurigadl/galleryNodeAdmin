@@ -1,8 +1,7 @@
 /** Module dependencies */
 var express = require('express')
   , http = require('http')
-  , path = require('path')
-  , hash = require('./lib/pass').hash;
+  , path = require('path');
 
 var app = express();
 
@@ -41,27 +40,6 @@ app.use(function(req, res, next){
   }
   next();
 });
-
-// dummy database
-var users = {
-  tj: { name: 'tj' }
-};
-
-// when you create a user, generate a salt
-// and hash the password ('foobar' is the pass here)
-
-hash('foobar', function(err, salt, hash){
-  if (err){
-    throw err;
-  }
-  // store the salt & hash in the "db"
-  users.tj.salt = salt;
-  users.tj.hash = hash;
-});
-
-
-// Authenticate using our plain-object database of doom!
-
 
 require("./routes")(app);
 

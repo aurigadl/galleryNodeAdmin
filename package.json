@@ -8,6 +8,8 @@
   "dependencies": {
     "express": "3.0.6",
     "jade": "*",
-    "stylus": "*"
+    "pwd": "*",
+    "stylus": "*",
+    "i18n": "~0.3.7"
   }
 }

@@ -3,5 +3,14 @@ extends ../layAdmin
 block content
   h1 title
   p Admin 
-  p  #{message}
+
+  if (message)
+  h3 #{__(message)} 
+  p sss 
+  
+
   p Que sera lo que no deja mostrar el res.locals.message en esta pantalla :/
+  p
+    a(href='/logout', title='View login page') Logout
+
+

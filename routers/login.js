@@ -17,14 +17,12 @@ exports.loginPost = function(req, res){
   pass = req.body.password;
 
   hash(pass, fs.salt, function(err, hash){
-    if (fs.hash === hash && name === fs.login) {
-      req.session.regenerate(function(){
+    if (fs.hash == hash && name === fs.login) {
+        req.session.user = name;
         req.session.message = 'Authenticated as ' + name;
-      });
-      req.session.user = name;
       res.redirect('admin');
     }else{
-      req.session.message = 'Authentication failed, please check your data';
+      req.session.message = 'The username or password you entered is incorrect';
       res.redirect('login');
     }
   });

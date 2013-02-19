@@ -4,7 +4,11 @@ html
     title Jade Template
   body
     h1 Login
-    h3 sss #{__(message)} 
+
+    if (message)
+    h3 #{__(message)} 
+    p sss 
+
     form(method='post' ,action='/login')
       div(data-role='fieldcontain')
         fieldset(data-role='controlgroup')

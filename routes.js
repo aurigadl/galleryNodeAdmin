@@ -1,10 +1,11 @@
 module.exports = function (app) {
 
   var rou_admin = require('./routers/admin')
-  ,   rou_login = require('./routers/login');
+  ,   rou_login = require('./routers/login')
+  ,   rou_page  = require('./routers/page')
+  ,   rou_logou = require('./routers/logout');
 
   function restrict(req, res, next) {
-    console.log('restrict ' + req.session.user);
     if (req.session.user){
       next();
     } else {
@@ -13,22 +14,17 @@ module.exports = function (app) {
     }
   }
 
-  app.get('/', restrict, function (req, res){
-    res.render('page'); 
-  });
+  //General
+  app.get('/', rou_page.page); 
 
+  //Admin
   app.get('/admin', restrict, rou_admin.admin);
 
-  app.post('/login', rou_login.login);
+  //Login
+  app.get( '/login', rou_login.loginGet);
+  app.post('/login', rou_login.loginPost);
 
-  app.get('/login', function(req, res){
-    res.render('login');
-  });
+  //logout
+  app.get('/logout', rou_logou.logout);
 
-  app.get('/logout', function(req, res){
-    // destroy the user's session to log them out
-    req.session.destroy(function(){
-      res.redirect('/');
-    });
-  });
 };

@@ -1,12 +1,14 @@
 /** Module dependencies */
 var express = require('express')
-  , http = require('http')
-  , path = require('path')
-  , i18n = require("i18n");
+  , http    = require('http')
+  , path    = require('path')
+  , djondb  = require( 'djondb')
+  , i18n    = require("i18n");
 
 var app = express();
 
 
+var io  = require('socket.io').listen(app);
 //config express
 app.configure(function(){
   app.set('port', process.env.PORT || 3030);

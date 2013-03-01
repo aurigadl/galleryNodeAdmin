@@ -1,6 +1,6 @@
 module.exports = function (app) {
 
-  var rou_admin = require('./routers/admin')
+  var rou_admin = require('./routers/admin')(app)
   ,   rou_login = require('./routers/login')
   ,   rou_page  = require('./routers/page')
   ,   rou_logou = require('./routers/logout');
@@ -17,7 +17,8 @@ module.exports = function (app) {
   app.get('/', rou_page.page); 
 
   //Admin
-  app.get('/admin', restrict, rou_admin.admin);
+  //app.get('/admin', restrict, rou_admin.admin)(app);
+  app.get('/admin', rou_admin.admin)(app);
 
   //Login
   app.get( '/login', rou_login.loginGet);

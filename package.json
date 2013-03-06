@@ -10,7 +10,7 @@
     "jade": "*",
     "pwd": "*",
     "stylus": "*",
-    "stylus": "djondb",
+    "djondb": "*",
     "i18n": "~0.3.7",
     "socket.io": "~0.9.13"
   }

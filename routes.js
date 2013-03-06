@@ -1,8 +1,8 @@
-module.exports = function (app) {
+module.exports = function ( app ) {
 
-  var rou_admin = require('./routers/admin')(app)
-  ,   rou_login = require('./routers/login')
-  ,   rou_page  = require('./routers/page')
+  var rou_admin = require('./routers/admin' )(app)
+  ,   rou_login = require('./routers/login' )
+  ,   rou_page  = require('./routers/page'  )
   ,   rou_logou = require('./routers/logout');
 
   function restrict(req, res, next) {
@@ -14,11 +14,11 @@ module.exports = function (app) {
   }
 
   //General
-  app.get('/', rou_page.page); 
+  app.get('/', rou_page.page);
 
   //Admin
-  //app.get('/admin', restrict, rou_admin.admin)(app);
-  app.get('/admin', rou_admin.admin)(app);
+  //app.get('/admin', restrict, rou_admin.admin);
+  //app.get('/admin', rou_admin.getAdmin);
 
   //Login
   app.get( '/login', rou_login.loginGet);

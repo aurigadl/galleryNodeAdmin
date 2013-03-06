@@ -1,23 +1,34 @@
-var djondb = require('djondb');
+var ConnecDjon = ConnecDjon || {};
 
-// Namespace for the library
-var ConnecDjon = {};
+ConnecDjon = (function ( ) {
 
-ConnecDjon = (function () {
-
-  var server  = "localhost",
-  manager = new djondb.WrapConnectionManager();
+  var djondb  = require ( 'djondb' )
+     ,server  = "localhost"
+     ,conport = 1243
+     ,manager = new djondb.WrapConnectionManager();
 
   return {
 
     setServer: function ( serv ){
-      this.server = serv;
+      server = serv;
+    },
+
+    setPort: function ( port ){
+      conport  = port;
+    },
+
+    getServer: function ( ){
+      return server;
+    },
+
+    getPort: function ( ){
+      return conport;
     },
 
     getConnet: function ( ) {
-      var con = this.manager.getConnection(this.server);
-      if(con){
-        con.open();
+      var con = manager.getConnection( server, conport );
+      if( con ){
+        con.open( );
         return con;
       }
       console.error('connect error');
